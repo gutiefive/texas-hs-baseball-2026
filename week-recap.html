@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week in Review — March 14-21 | Texas HS Baseball 2026</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .recap-badge {
+      display: inline-block;
+      background: #d4a843;
+      color: #0a0e1a;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 3px;
+      margin-bottom: 0.5rem;
+    }
+    .game-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(212,168,67,0.2);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .game-card:hover {
+      border-color: rgba(212,168,67,0.5);
+    }
+    .game-score {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+    .game-team {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #e8e8e8;
+    }
+    .game-team.winner {
+      color: #d4a843;
+    }
+    .score-val {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #d4a843;
+      min-width: 2rem;
+      text-align: center;
+    }
+    .score-val.loser {
+      color: #666;
+    }
+    .vs-divider {
+      font-size: 0.75rem;
+      color: #555;
+      padding: 0 0.5rem;
+    }
+    .game-meta {
+      font-size: 0.78rem;
+      color: #888;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .game-notes {
+      font-size: 0.9rem;
+      color: #bbb;
+      line-height: 1.6;
+    }
+    .player-spotlight {
+      background: linear-gradient(135deg, rgba(212,168,67,0.08), rgba(26,40,69,0.4));
+      border: 1px solid rgba(212,168,67,0.35);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .player-spotlight h4 {
+      color: #d4a843;
+      font-size: 1.15rem;
+      margin: 0 0 0.25rem 0;
+    }
+    .player-spotlight .position-school {
+      font-size: 0.82rem;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+    }
+    .stat-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 0.75rem 0;
+    }
+    .stat-pill {
+      background: rgba(212,168,67,0.12);
+      border: 1px solid rgba(212,168,67,0.25);
+      border-radius: 20px;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #d4a843;
+    }
+    .region-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2.5rem 0 1.5rem;
+    }
+    .region-divider h3 {
+      color: #d4a843;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      white-space: nowrap;
+      margin: 0;
+    }
+    .region-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(212,168,67,0.25);
+    }
+    .gotw-card {
+      background: linear-gradient(135deg, rgba(212,168,67,0.12), rgba(10,14,26,0.9));
+      border: 2px solid #d4a843;
+      border-radius: 10px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .gotw-label {
+      position: absolute;
+      top: -12px;
+      left: 1.5rem;
+      background: #d4a843;
+      color: #0a0e1a;
+      font-size: 0.7rem;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 3px;
+    }
+    .rankings-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+    .rankings-table th {
+      text-align: left;
+      padding: 0.6rem 0.75rem;
+      color: #d4a843;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-bottom: 1px solid rgba(212,168,67,0.3);
+    }
+    .rankings-table td {
+      padding: 0.65rem 0.75rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      color: #ccc;
+    }
+    .rankings-table tr:hover td {
+      background: rgba(212,168,67,0.05);
+    }
+    .rank-num {
+      color: #d4a843;
+      font-weight: 800;
+      font-size: 1rem;
+    }
+    .record-good { color: #4caf7d; font-weight: 700; }
+    .movement-up { color: #4caf7d; }
+    .movement-same { color: #888; }
+    .week-header {
+      text-align: center;
+      padding: 1.5rem 0 0.5rem;
+      color: #888;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="container">
+      <div class="logo">⚾ TX Baseball</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dfw.html">DFW</a></li>
+        <li><a href="houston.html">Houston</a></li>
+        <li><a href="austin.html">Austin</a></li>
+        <li><a href="south-texas.html">South TX</a></li>
+        <li><a href="statewide.html">Statewide</a></li>
+        <li><a href="week-recap.html" class="active">Week Recap</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Week in Review</h1>
+      <p class="hero-subtitle">March 14–21, 2026</p>
+      <p class="hero-meta">Games of the Week · Player Spotlights · Rankings Movement</p>
+      <p class="hero-description">Tomball hits 19-0-1, United South stuns Laredo Alexander, and elite talent continues to shine across the state</p>
+    </div>
+  </section>
+
+  <!-- GAME OF THE WEEK -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p>Top Matchup</p>
+        <h2>Game of the Week</h2>
+      </div>
+
+      <div class="gotw-card">
+        <div class="gotw-label">🏆 Game of the Week</div>
+        <div class="game-meta" style="margin-bottom: 1rem;">District 30-6A · South Texas · March 18-19, 2026</div>
+        <h3 style="color: #d4a843; margin: 0 0 1rem 0; font-size: 1.5rem;">Laredo United South sweeps Laredo Alexander</h3>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+          <div class="game-card" style="margin: 0;">
+            <div class="game-meta">Game 1</div>
+            <div class="game-score">
+              <div>
+                <div class="game-team winner">United South</div>
+                <div class="game-team" style="color: #666;">Alexander</div>
+              </div>
+              <div style="text-align: right;">
+                <div class="score-val">8</div>
+                <div class="score-val loser">0</div>
+              </div>
+            </div>
+          </div>
+          <div class="game-card" style="margin: 0;">
+            <div class="game-meta">Game 2</div>
+            <div class="game-score">
+              <div>
+                <div class="game-team winner">United South</div>
+                <div class="game-team" style="color: #666;">Alexander</div>
+              </div>
+              <div style="text-align: right;">
+                <div class="score-val">8</div>
+                <div class="score-val loser">1</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p style="color: #ccc; line-height: 1.7;">Laredo United South delivered one of the most dominant district performances of the young season, sweeping rival Laredo Alexander by a combined score of 16-1. Alexander has long been the power in District 30-6A, making this sweep a massive statement for United South's 2026 ambitions. The Panthers' pitching staff was lights-out across both games, and the offense manufactured runs early and often. This is the kind of series win that earns respect statewide — and it could shake up the South Texas 6A rankings heading into the heart of district play.</p>
+      </div>
+
+      <!-- Runner-up GOTW -->
+      <div class="gotw-card" style="border-color: rgba(212,168,67,0.5); background: rgba(212,168,67,0.05);">
+        <div class="gotw-label" style="background: rgba(212,168,67,0.7); color: #0a0e1a;">Runner-Up</div>
+        <div class="game-meta" style="margin-bottom: 1rem;">District 13-4A · North Texas · March 20, 2026</div>
+        <h3 style="color: #d4a843; margin: 0 0 1rem 0; font-size: 1.3rem;">Iowa Park 12, Vernon 0 — TABC #4 continues to roll</h3>
+        <div class="game-card" style="margin: 0 0 1rem 0; max-width: 300px;">
+          <div class="game-score">
+            <div>
+              <div class="game-team winner">Iowa Park</div>
+              <div class="game-team" style="color: #666;">Vernon</div>
+            </div>
+            <div style="text-align: right;">
+              <div class="score-val">12</div>
+              <div class="score-val loser">0</div>
+            </div>
+          </div>
+        </div>
+        <p style="color: #ccc; line-height: 1.7;">The TABC's #4-ranked Iowa Park Hawks kept their dominant run going with a 12-0 shutout of Vernon. The Hawks are making a strong case to climb even higher in the state rankings with their convincing run through district play. Iowa Park is quietly one of the most dangerous teams in the state outside the major metros, and a run to the 4A state tournament is looking very realistic.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCORES BY REGION -->
+  <section class="section" style="background: rgba(26, 40, 69, 0.3);">
+    <div class="container">
+      <div class="section-header">
+        <p>Around the State</p>
+        <h2>Week's Notable Scores</h2>
+      </div>
+
+      <!-- Houston Region -->
+      <div class="region-divider">
+        <h3>🏙️ Houston Region</h3>
+      </div>
+
+      <div class="game-card">
+        <div class="game-meta">District 24-6A · March 20, 2026</div>
+        <div class="game-score">
+          <div>
+            <div class="game-team winner">Clear Creek</div>
+            <div class="game-team" style="color: #666;">Deer Park</div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span class="score-val">W</span>
+          </div>
+        </div>
+        <p class="game-notes">RHP Anthony DiCello delivered 6 strong innings — 1 run, 5 hits — before closer Sauers locked the door with a perfect, hitless final frame. Clear Creek makes their move in District 24-6A and keeps pace with Dickinson at the top.</p>
+      </div>
+
+      <div class="game-card">
+        <div class="game-meta">District 24-6A · March 20, 2026</div>
+        <div class="game-score">
+          <div>
+            <div class="game-team winner">Dickinson</div>
+            <div class="game-team" style="color: #666;">Clear Brook</div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span class="score-val">7</span>
+            <span class="vs-divider">—</span>
+            <span class="score-val loser">0</span>
+          </div>
+        </div>
+        <p class="game-notes">Dickinson was all business — 3 runs in the 1st, 4 more in the 5th sealed a shutout over Clear Brook. The Gators look like a legitimate district threat and are building toward a deep playoff run.</p>
+      </div>
+
+      <!-- North Texas -->
+      <div class="region-divider">
+        <h3>⭐ North Texas / Texoma</h3>
+      </div>
+
+      <div class="game-card">
+        <div class="game-meta">District Action · March 20, 2026</div>
+        <div class="game-score">
+          <div>
+            <div class="game-team winner">Holliday</div>
+            <div class="game-team" style="color: #666;">Henrietta</div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span class="score-val">7</span>
+            <span class="vs-divider">—</span>
+            <span class="score-val loser">6</span>
+          </div>
+        </div>
+        <p class="game-notes">A tight 7-6 Holliday victory in a classic Texoma rivalry matchup. One-run district games like this are the backbone of Texas high school baseball — every out matters.</p>
+      </div>
+
+      <!-- South Texas -->
+      <div class="region-divider">
+        <h3>🌵 South Texas</h3>
+      </div>
+
+      <div class="game-card">
+        <div class="game-meta">District 30-6A · March 2026</div>
+        <div class="game-score">
+          <div>
+            <div class="game-team winner">La Joya Coyotes</div>
+            <div class="game-team" style="color: #666;">Overall Record</div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span class="score-val record-good">17-3</span>
+          </div>
+        </div>
+        <p class="game-notes">La Joya is flying under the radar with a 17-3 record — one of the best starts in South Texas 6A. A deep senior class is driving this team, and they're right in the mix for a deep district run. Keep an eye on the Coyotes as district play heats up.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLAYER SPOTLIGHTS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p>Elite Performances</p>
+        <h2>Player Spotlights</h2>
+      </div>
+
+      <!-- Pitcher of the Week -->
+      <div class="player-spotlight">
+        <div class="recap-badge">⚡ Pitcher of the Week</div>
+        <h4>Anthony DiCello — Clear Creek</h4>
+        <div class="position-school">RHP · District 24-6A · Houston Region</div>
+        <div class="stat-line">
+          <span class="stat-pill">6 IP</span>
+          <span class="stat-pill">1 R</span>
+          <span class="stat-pill">5 H</span>
+          <span class="stat-pill">Win</span>
+        </div>
+        <p style="color: #bbb; font-size: 0.9rem; line-height: 1.6;">DiCello was masterful against Deer Park, working six innings while limiting the damage to a single run. His command and ability to go deep into the game gave Clear Creek the district win they needed. With closer Sauers finishing it off, this was a team pitching effort that shows what Clear Creek's staff is capable of in 2026.</p>
+      </div>
+
+      <!-- Grady Emerson -->
+      <div class="player-spotlight">
+        <div class="recap-badge">🌟 Draft Watch</div>
+        <h4>Grady Emerson — Fort Worth Christian</h4>
+        <div class="position-school">SS/LHP · DFW Region · Projected Top-5 MLB Draft Pick</div>
+        <div class="stat-line">
+          <span class="stat-pill">Top-5 Draft Projection</span>
+          <span class="stat-pill">2-Way Star</span>
+          <span class="stat-pill">TXHSB #1 Overall</span>
+        </div>
+        <p style="color: #bbb; font-size: 0.9rem; line-height: 1.6;">Emerson continues to be the most-watched player in Texas high school baseball. The left-handed hitting shortstop from Fort Worth Christian is a legitimate candidate for the #1 overall pick in the 2026 MLB Draft, drawing comparisons to premium two-way talent. Every game he plays this spring is a showcase event for pro scouts. He's the crown jewel of the DFW region and arguably the best prep player in the country.</p>
+      </div>
+
+      <!-- Cooper Harris -->
+      <div class="player-spotlight">
+        <div class="recap-badge">🔥 Prospect Alert</div>
+        <h4>Cooper Harris — RHP</h4>
+        <div class="position-school">RHP · Texas Commit · Day-1 Draft Consideration</div>
+        <div class="stat-line">
+          <span class="stat-pill">Texas Commit</span>
+          <span class="stat-pill">2026 Draft Eligible</span>
+          <span class="stat-pill">Power Arm</span>
+        </div>
+        <p style="color: #bbb; font-size: 0.9rem; line-height: 1.6;">Harris remains one of the state's most intriguing arms. The Texas recruit is drawing Day-1 draft consideration and continues to build his case with every start. A power pitcher with projection, he's one of those guys MLB teams are going to have a serious conversation about in June.</p>
+      </div>
+
+      <!-- Lubin Rincon -->
+      <div class="player-spotlight">
+        <div class="recap-badge">💎 Sophomore Phenom</div>
+        <h4>Lubin Rincon — Shadow Creek (Pearland)</h4>
+        <div class="position-school">SS/3B · #1 Texas 2027 Prospect · #3 National</div>
+        <div class="stat-line">
+          <span class="stat-pill">Texas Commit</span>
+          <span class="stat-pill">Class of 2027</span>
+          <span class="stat-pill">#3 National</span>
+        </div>
+        <p style="color: #bbb; font-size: 0.9rem; line-height: 1.6;">Rincon is only a sophomore and already the most talked-about young player in the state. The Venezuela-born shortstop at Shadow Creek/Pearland is the #1 Texas prospect in the 2027 class and #3 in the country. Every week he takes the field, pro scouts are watching. He projects as a future top-5 MLB Draft pick and is the kind of talent that comes around once in a generation for Texas high school baseball.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- POWER RANKINGS -->
+  <section class="section" style="background: rgba(26, 40, 69, 0.3);">
+    <div class="container">
+      <div class="section-header">
+        <p>After Week 4</p>
+        <h2>Statewide Power Rankings Snapshot</h2>
+      </div>
+
+      <table class="rankings-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Team</th>
+            <th>Classification</th>
+            <th>Region</th>
+            <th>Record</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="rank-num">1</span></td>
+            <td><strong>Tomball</strong></td>
+            <td>6A</td>
+            <td>Houston</td>
+            <td><span class="record-good">19-0-1</span></td>
+            <td>VYPE #1 Houston · Unbeaten · District 15-6A 3-0</td>
+          </tr>
+          <tr>
+            <td><span class="rank-num">2</span></td>
+            <td><strong>Kingwood</strong></td>
+            <td>6A-DII</td>
+            <td>Houston</td>
+            <td><span class="record-good">–</span></td>
+            <td>Defending state champs · Loaded roster</td>
+          </tr>
+          <tr>
+            <td><span class="rank-num">3</span></td>
+            <td><strong>Fort Worth Christian</strong></td>
+            <td>4A-DI</td>
+            <td>DFW</td>
+            <td><span class="record-good">–</span></td>
+            <td>Home of Grady Emerson · Top national recruit</td>
+          </tr>
+          <tr>
+            <td><span class="rank-num">4</span></td>
+            <td><strong>Iowa Park</strong></td>
+            <td>4A</td>
+            <td>North Texas</td>
+            <td><span class="record-good">–</span></td>
+            <td>TABC #4 · 12-0 win this week · State contender</td>
+          </tr>
+          <tr>
+            <td><span class="rank-num">5</span></td>
+            <td><strong>Laredo United South</strong></td>
+            <td>6A</td>
+            <td>South Texas</td>
+            <td><span class="record-good">–</span></td>
+            <td>↑ Sweeping Alexander 8-0, 8-1 earns them a spot here</td>
+          </tr>
+          <tr>
+            <td><span class="rank-num">6</span></td>
+            <td><strong>La Joya</strong></td>
+            <td>6A</td>
+            <td>South Texas</td>
+            <td><span class="record-good">17-3</span></td>
+            <td>Quietly one of the best records in South Texas 6A</td>
+          </tr>
+          <tr>
+            <td><span class="rank-num">7</span></td>
+            <td><strong>Dickinson</strong></td>
+            <td>6A</td>
+            <td>Houston</td>
+            <td><span class="record-good">–</span></td>
+            <td>7-0 shutout this week · Making noise in 24-6A</td>
+          </tr>
+          <tr>
+            <td><span class="rank-num">8</span></td>
+            <td><strong>Shadow Creek</strong></td>
+            <td>6A</td>
+            <td>Houston</td>
+            <td><span class="record-good">–</span></td>
+            <td>Home of Lubin Rincon · Rising program</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="color: #666; font-size: 0.78rem; margin-top: 1rem; text-align: center;">Rankings reflect overall performance, strength of schedule, and results through March 21, 2026. Not official TABC/UIL rankings.</p>
+    </div>
+  </section>
+
+  <!-- TEAMS TO WATCH -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p>What's Coming</p>
+        <h2>Teams to Watch Next Week</h2>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-header">
+            <h3 style="color: #d4a843; margin: 0;">Tomball — Can the streak continue?</h3>
+          </div>
+          <div class="card-body">
+            <p>At 19-0-1, Tomball is the hottest team in Texas. With ace Karson Reeder (Texas commit) and two-way stud CJ Sampson (Texas A&M commit) leading the way, the Cougars face the challenge of staying unbeaten through the back half of district. They've been the most dominant team in Houston and arguably the state. A loss would be shocking at this point.</p>
+          </div>
+          <div class="card-footer">
+            <span class="badge badge-success">19-0-1 | VYPE #1 Houston</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 style="color: #d4a843; margin: 0;">Laredo United South — Real deal?</h3>
+          </div>
+          <div class="card-body">
+            <p>After sweeping Alexander 16-1 combined, United South has to be considered the favorite in District 30-6A. The question now is whether they can sustain this level of performance through the rest of district and into the playoffs. If their pitching holds, this team could make some serious noise in South Texas 6A.</p>
+          </div>
+          <div class="card-footer">
+            <span class="badge badge-primary">District 30-6A Leaders</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 style="color: #d4a843; margin: 0;">Kingwood — Defending champs heating up</h3>
+          </div>
+          <div class="card-body">
+            <p>The defending 6A-DII state champions are building toward another playoff run with Graham Charboneau (Baylor signee, 2025 State MVP) leading as a senior. Kingwood is the measuring stick in the Houston region — every team wants to be the one to knock them off. Their second half of district will be must-watch baseball.</p>
+          </div>
+          <div class="card-footer">
+            <span class="badge badge-success">Defending State Champs</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 style="color: #d4a843; margin: 0;">Iowa Park — 4A dark horse</h3>
+          </div>
+          <div class="card-body">
+            <p>Don't sleep on Iowa Park. The TABC #4-ranked Hawks are rolling through district and look like a legitimate threat to reach the 4A state tournament. Their 12-0 demolition of Vernon this week showed they're not just surviving — they're dominating. Keep this program on your radar as playoff seeding takes shape.</p>
+          </div>
+          <div class="card-footer">
+            <span class="badge badge-primary">TABC #4 · 4A</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Coverage Regions</h4>
+          <ul>
+            <li><a href="dfw.html">Dallas-Fort Worth</a></li>
+            <li><a href="houston.html">Greater Houston</a></li>
+            <li><a href="austin.html">Austin / Central Texas</a></li>
+            <li><a href="south-texas.html">South Texas</a></li>
+            <li><a href="statewide.html">Statewide</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>This Week</h4>
+          <ul>
+            <li><a href="week-recap.html">Week Recap (Mar 14-21)</a></li>
+            <li><a href="statewide.html">Power Rankings</a></li>
+            <li><a href="statewide.html">College Commits</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>About</h4>
+          <ul>
+            <li><a href="#">Coverage Areas</a></li>
+            <li><a href="#">Data Sources</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Updates & News</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p><strong>Texas HS Baseball Report | 2026 Season</strong></p>
+        <p>Week in Review: March 14–21, 2026</p>
+        <p>Data sourced from VYPE, TABC, MaxPreps, and regional coverage</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      if (link.href === window.location.href) {
+        link.classList.add('active');
+      }
+    });
+  </script>
+</body>
+</html>
